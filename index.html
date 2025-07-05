@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Professional Wideband RF Gain Block Amplifier (0.1–50 MHz)  | Bocaletto Luca</title>
+  <meta name="description" content="Detailed design, simulation, PCB layout, and testing procedures for a two-stage wideband RF gain block amplifier covering 0.1 to 50 MHz, delivering 24 dB gain with low noise.">
+  <meta name="keywords" content="RF amplifier, wideband amplifier, HF amplifier, 0.1-50 MHz, PSA4-5043+, PCB layout, RF design">
+  <meta name="author" content="Bocaletto Luca">
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; }
+    header, footer { background: #004466; color: #fff; text-align: center; padding: 1rem; }
+    main { padding: 1rem 2rem; }
+    h1, h2 { color: #004466; }
+    pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; }
+    ul { margin: 0.5rem 0 1rem 1.5rem; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Professional Wideband RF Gain Block Amplifier (0.1–50 MHz)</h1>
+  </header>
+
+  <main>
+
+    <section id="introduction">
+      <h2>Introduction</h2>
+
+      <p>
+        This document describes the design, simulation, PCB layout, and testing procedures for a two-stage wideband RF gain block amplifier covering 0.1 to 50 MHz. The amplifier delivers 24 dB of flat gain, maintains a noise figure below 3 dB, and operates unconditionally stably from a single 5 V supply.
+      </p>
+
+    </section>
+
+    <section id="objectives">
+      <h2>Project Objectives</h2>
+
+      <p>
+        The goal is to amplify HF signals up to 50 MHz with flat gain, low noise, and minimal distortion. The amplifier interfaces directly to 50 Ω systems, consumes less than 25 mA total, and uses internally matched MMIC devices to eliminate external matching networks.
+      </p>
+
+    </section>
+
+    <section id="specifications">
+      <h2>System Specifications</h2>
+
+      <ul>
+        <li>Frequency range: 0.1–50 MHz</li>
+        <li>Small-signal gain: 24 dB ±1 dB</li>
+        <li>Noise figure: ≤ 3 dB total</li>
+        <li>Input/output impedance: 50 Ω</li>
+        <li>Input P<sub>1 dB</sub>: ≥ +10 dBm; Output P<sub>1 dB</sub>: ≥ +15 dBm</li>
+        <li>IIP3: > +10 dBm</li>
+        <li>Supply voltage: 5 V DC @ <25 mA</li>
+        <li>Stability: Unconditional (Rollett’s K > 1)</li>
+        <li>PCB substrate: FR-4, ε<sub>r</sub> ≈ 4.4, thickness 1.6 mm</li>
+      </ul>
+
+    </section>
+
+    <section id="device-selection">
+      <h2>Active Device Selection</h2>
+
+      <p>
+        Two Mini-Circuits PSA4-5043+ MMICs in SOT-23-6 are cascaded. Each device provides 12 dB gain, a 2 dB noise figure, and DC–500 MHz bandwidth at a 5 V, 10 mA bias. Cascading yields approximately 24 dB of flat gain with excellent linearity.
+      </p>
+
+    </section>
+
+    <section id="architecture-biasing">
+      <h2>Circuit Architecture &amp; Biasing</h2>
+
+      <p>
+        Each MMIC stage is biased in class A. The 5 V rail feeds through a 220 nH RF choke to isolate the supply from RF, and a 100 nF bypass capacitor placed next to each device pin ensures a low-impedance path to ground at HF. No external bias resistors are required, as the PSA4-5043+ integrates its bias network and maintains a 50 Ω match internally.
+      </p>
+
+    </section>
+
+    <section id="coupling-filtering">
+      <h2>RF Coupling &amp; Filtering</h2>
+
+      <p>
+        220 nF coupling capacitors at the input, inter-stage, and output provide AC coupling down to 0.1 MHz. Optional dual T-section band-pass filters on the PCB can be added at the input and output to suppress out-of-band signals and protect against strong broadcast interference.
+      </p>
+
+    </section>
+
+    <section id="simulation">
+      <h2>Simulation &amp; Verification</h2>
+
+      <p>
+        The full schematic is imported into ADS or LTspice with S-parameter models for the PSA4-5043+ and filter components. An AC sweep from 10 kHz to 100 MHz verifies gain flatness, return loss, noise figure, and unconditional stability (Rollett’s K factor). Two-tone simulations at representative HF frequencies evaluate IIP3 linearity.
+      </p>
+
+    </section>
+
+    <section id="layout-guidelines">
+      <h2>PCB Layout Guidelines</h2>
+
+      <p>
+        Layout is optimized on FR-4 with 50 Ω microstrip traces (≈ 3 mm width), though impedance control is relaxed below 50 MHz. Critical components—MMICs, chokes, bypass and coupling capacitors—are placed within 1 mm of each other. A continuous ground plane and via stitching every 5 mm ensure low ground impedance.
+      </p>
+
+    </section>
+
+    <section id="bom">
+      <h2>Bill of Materials</h2>
+
+      <ul>
+        <li>2 × Mini-Circuits PSA4-5043+ (SOT-23-6)</li>
+        <li>4 × 220 nF coupling capacitors, 0805, 6.3 V</li>
+        <li>2 × 220 nH RF chokes, 0603</li>
+        <li>2 × 100 nF bypass capacitors, 0805, 10 V</li>
+        <li>Optional filter parts: inductors and capacitors for T-section filters</li>
+      </ul>
+
+    </section>
+
+    <section id="testing">
+      <h2>Testing Procedures</h2>
+
+      <p>
+        After prototyping, measure S-parameters with a network analyzer to confirm gain, return loss, and P<sub>1 dB</sub>. Measure noise figure across 0.1–50 MHz with a noise-figure analyzer. Perform two-tone IIP3 testing on a spectrum analyzer. Verify stability by sweeping from DC to 500 MHz and ensure no oscillations. Conduct temperature tests from –20 °C to +70 °C.
+      </p>
+
+    </section>
+
+    <section id="ascii-schematic">
+      <h2>ASCII Schematic Diagram</h2>
+      <pre>
+           RF_IN ── C_in1 ──[PSA4-5043+]── C_coup ──[PSA4-5043+]── C_out2 ── RF_OUT
+                     │         │            │         │
+                    GND       CHK1         CHK2      GND
+                               │            │
+                              VCC          VCC
+                     C_bp1     │            │     C_bp2
+                     │         │            │     │
+                    GND       GND          GND   GND
+
+      Legend:
+      C_in1/C_out2 – 220 nF coupling capacitors
+      C_coup       – 220 nF interstage coupling capacitor
+      CHK1/CHK2    – 220 nH RF choke on supply line
+      C_bp1/C_bp2  – 100 nF DC bypass capacitors
+      [PSA4-5043+] – MMIC amplifier, 12 dB gain, DC–500 MHz
+      </pre>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 RF Design Team. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
