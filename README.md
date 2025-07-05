@@ -72,3 +72,13 @@ CHK1/CHK2    – 220 nH RF choke on supply line
 C_bp1/C_bp2  – 100 nF DC bypass capacitors
 [PSA4-5043+] – MMIC amplifier, 12 dB gain, DC–500 MHz
 ```
+
+## File .py generate PCB scheme
+
+Below is an example Python script that uses SKiDL to generate the netlist and then KiCad’s pcbnew Python API to import that netlist, place footprints, draw 50 Ω microstrip tracks, pour a ground zone and export a finished .kicad_pcb. You’ll need KiCad 6+ installed, and to run this on the same machine where pcbnew is available in Python.
+
+Save this as generate_pcb.py alongside:
+
+A KiCad PCB template named template.kicad_pcb (empty board with correct layers).
+
+The SKiDL script rf_gain_block.py from before, to produce rf_gain_block.net.
