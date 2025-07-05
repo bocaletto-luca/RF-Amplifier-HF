@@ -92,3 +92,11 @@ The SKiDL script rf_gain_block.py from before, to produce rf_gain_block.net.
            • Step 5 shows how to draw a straight track for each net; in practice you’ll add one route() call per net or hook up an autorouter. 
            • Step 6 pours a ground zone on the bottom copper connected to GND. 
            • Step 7 writes out the final .kicad_pcb, ready for DRC and Gerber export.
+
+---
+
+[![Read Online](https://img.shields.io/badge/Read%20Online-blue)](https://bocaletto-luca.github.io/RF-Amplifier-HF/index.html)  
+
+[![Read Online](https://img.shields.io/badge/Read%20Online-blue)](https://bocaletto-luca.github.io/RF-Amplifier-WiFi/index.html)
+
+---
