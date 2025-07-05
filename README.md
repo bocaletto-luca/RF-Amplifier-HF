@@ -1,4 +1,4 @@
-# Wideband RF Gain Amplifier (0.1–50 MHz)
+# Wideband RF HF Gain Amplifier (0.1–50 MHz)
 #### Author: Bocaletto Luca
 
 ## Introduction  
