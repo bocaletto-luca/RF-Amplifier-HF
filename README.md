@@ -85,10 +85,10 @@ The SKiDL script rf_gain_block.py from before, to produce rf_gain_block.net.
 
 ## file python How it works:
 
-• Step 1 calls your SKiDL script to emit rf_gain_block.net. 
-• Step 2 loads a nearly-empty KiCad board with your layer stack. 
-• Step 3 imports the netlist, adding footprints to the board. 
-• Step 4 positions each footprint at exact (x,y) mm coordinates. 
-• Step 5 shows how to draw a straight track for each net; in practice you’ll add one route() call per net or hook up an autorouter. 
-• Step 6 pours a ground zone on the bottom copper connected to GND. 
-• Step 7 writes out the final .kicad_pcb, ready for DRC and Gerber export.
+           • Step 1 calls your SKiDL script to emit rf_gain_block.net. 
+           • Step 2 loads a nearly-empty KiCad board with your layer stack. 
+           • Step 3 imports the netlist, adding footprints to the board. 
+           • Step 4 positions each footprint at exact (x,y) mm coordinates. 
+           • Step 5 shows how to draw a straight track for each net; in practice you’ll add one route() call per net or hook up an autorouter. 
+           • Step 6 pours a ground zone on the bottom copper connected to GND. 
+           • Step 7 writes out the final .kicad_pcb, ready for DRC and Gerber export.
