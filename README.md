@@ -1,4 +1,5 @@
 # Wideband RF Gain Amplifier (0.1–50 MHz)
+#### Author: Bocaletto Luca
 
 ## Introduction  
 This document describes the design, simulation, PCB layout, and testing procedures for a two-stage wideband RF gain block amplifier covering 0.1 to 50 MHz. The amplifier delivers 24 dB gain, a noise figure below 3 dB, and unconditional stability while operating from a single 5 V supply. All component values, footprints, and layout guidelines are provided to support a seamless transition to prototyping and production.
